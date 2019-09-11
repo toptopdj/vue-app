@@ -12,13 +12,6 @@ export default new Router({
 			redirect: '/news'
 		},
 		{
-			path: '/user',
-			component: () => import('./views/user/User.vue'),
-			meta: {
-				title: '会员中心'
-			}
-		},
-		{
 			path: '/goods',
 			component: () => import('./views/goods/GoodsList.vue'),
 			meta: {
@@ -30,13 +23,6 @@ export default new Router({
 			component: () => import('./views/goods/Goods.vue'),
 			meta: {
 				title: '商品'
-			}
-		},
-		{
-			path: '/cart',
-			component: () => import('./views/cart/Cart.vue'),
-			meta: {
-				title: '购物车'
 			}
 		},
 		{
@@ -86,6 +72,48 @@ export default new Router({
 			component: () => import('./views/novel/Info.vue'),
 			meta: {
 				title: '风情小说'
+			}
+		},
+		{
+			path: '/ucenter',
+			component: () => import('./views/ucenter/index/Index.vue'),
+			meta: {
+				title: '用户中心'
+			}
+		},
+		{
+			path: '/ucenter/user',
+			component: () => import('./views/ucenter/user/User.vue'),
+			meta: {
+				title: '会员中心'
+			}
+		},
+		{
+			path: '/ucenter/cart',
+			component: () => import('./views/ucenter/cart/Cart.vue'),
+			meta: {
+				title: '购物车'
+			}
+		},
+		{
+			path: '/ucenter/address',
+			component: () => import('./views/ucenter/address/Address.vue'),
+			meta: {
+				title: '地址列表'
+			}
+		},
+		{
+			path: '/ucenter/address/add',
+			component: () => import('./views/ucenter/address/Add.vue'),
+			meta: {
+				title: '新增地址'
+			}
+		},
+		{
+			path: '/ucenter/address/edit/:id',
+			component: () => import('./views/ucenter/address/Edit.vue'),
+			meta: {
+				title: '修改地址'
 			}
 		}
   ]

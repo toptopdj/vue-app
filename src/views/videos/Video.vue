@@ -12,12 +12,12 @@
 					<img v-lazy="image"/>
 				</van-swipe-item>
 			</van-swipe>
-			<img :src="video.icon" style="width: 100%; height: 200px" v-else />
+			<img :src="video.icon" style="width: 100%; height: 30vh" v-else />
 
 			<van-row v-if="video.type === 2">
 				<van-cell-group>
 					<van-cell>
-						<audio :src="video.playUrl" controls autoplay loop>
+						<audio :src="video.playUrl" style="width: 90vw" controls autoplay loop>
 							你的浏览器不支持
 						</audio>
 					</van-cell>
@@ -26,7 +26,7 @@
 			<van-row v-else>
 				<van-cell-group>
 					<van-cell>
-						<video :src="video.actionUrl" controls>
+						<video :src="video.actionUrl" style="width: 90vw" controls>
 							你的浏览器不支持 <code>video</code> 标签.
 						</video>
 					</van-cell>
@@ -94,4 +94,7 @@
 			width 100vw
 			display flex
 			flex-wrap nowrap
+		.swipe
+			padding-top 50px
+			height 50vh
 </style>

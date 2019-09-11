@@ -1,41 +1,44 @@
 <template>
-  <div>
-    <van-checkbox-group class="card-goods" v-model="checkedGoods">
-      <van-checkbox
-        class="card-goods__item"
-        v-for="item in goods"
-        :key="item.id"
-        :name="item.id"
-      >
-        <van-card
-          :title="item.title"
-          :desc="item.desc"
-          :num="item.num"
-          :price="formatPrice(item.price)"
-          :thumb="item.thumb"
-        />
-      </van-checkbox>
-    </van-checkbox-group>
-    <van-submit-bar
-      :price="totalPrice"
-      :disabled="!checkedGoods.length"
-      :button-text="submitBarText"
-      @submit="onSubmit"
-    />
+	<transition name="slide-fade">
+		<div class="ucenter">
+			<van-nav-bar class="nav-bar" :title="this.$route.meta.title" left-text="返回" left-arrow @click-left="onClickLeft"></van-nav-bar>
+			<van-checkbox-group class="card-goods" v-model="checkedGoods">
+				<van-checkbox
+					class="card-goods__item"
+					v-for="item in goods"
+					:key="item.id"
+					:name="item.id"
+				>
+					<van-card
+						:title="item.title"
+						:desc="item.desc"
+						:num="item.num"
+						:price="formatPrice(item.price)"
+						:thumb="item.thumb"
+					/>
+				</van-checkbox>
+			</van-checkbox-group>
+			<van-submit-bar
+				:price="totalPrice"
+				:disabled="!checkedGoods.length"
+				:button-text="submitBarText"
+				@submit="onSubmit"
+			/>
   </div>
+	</transition>
 </template>
 
 <script>
-import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast } from 'vant';
+import { Checkbox, CheckboxGroup, Card, SubmitBar, NavBar } from 'vant';
 
 export default {
   components: {
     [Card.name]: Card,
     [Checkbox.name]: Checkbox,
     [SubmitBar.name]: SubmitBar,
-    [CheckboxGroup.name]: CheckboxGroup
+    [CheckboxGroup.name]: CheckboxGroup,
+		[NavBar.name]: NavBar
   },
-
   data () {
     return {
       checkedGoods: ['1', '2', '3'],
@@ -63,7 +66,6 @@ export default {
       }]
     };
   },
-
   computed: {
     submitBarText () {
       const count = this.checkedGoods.length;
@@ -74,15 +76,16 @@ export default {
       return this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0), 0);
     }
   },
-
   methods: {
     formatPrice (price) {
       return (price / 100).toFixed(2);
     },
-
     onSubmit () {
-      Toast('点击结算');
-    }
+      console.log('点击结算');
+    },
+		onClickLeft () {
+			this.$router.back();
+		}
   }
 };
 </script>
